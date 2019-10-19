@@ -1,13 +1,24 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link v-for="route in routes" :key="route.path" :to="route.path">{{
+        route.label
+      }}</router-link>
     </div>
     <router-view />
   </div>
 </template>
-
+<script>
+import { routes } from "@/router";
+export default {
+  name: "App",
+  data() {
+    return {
+      routes
+    };
+  }
+};
+</script>
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -23,6 +34,7 @@
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  padding: 0rem 0.5rem;
 }
 
 #nav a.router-link-exact-active {
